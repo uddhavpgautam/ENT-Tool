@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LastEarthquakes (Son Depremler)
 
 Bu uygulama 3 farklı servisten çektiği deprem verileri ile kullanıcıya anlık olarak deplem bilgilerini ulaştırmayı amaçlamıştır. 
@@ -43,3 +44,6 @@ ve daha birçok bilgiyi öğrenebileceksiniz.
 Eğer faydalı olduğunu düşünüyorsanız yapılan çalışmalara github üzerinden ve google play üzerinden yıldız vererek destek verebilirsiniz. Destek veren tüm arkadaşlar kodları dilediğince kullanabilir. Bol Android'li günler! :) 
 
 
+=======
+# ENT-Tool
+>>>>>>> 3006a62e5730a544742f0ae24f7559dffc5a6ce0
