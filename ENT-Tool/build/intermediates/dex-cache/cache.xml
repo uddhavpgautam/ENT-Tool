@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5b9f5b0aa8dee788beb63d23832cb29ce771343">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-7.3.0_80e13a2bc17e81e1948eec52d1efdb82839e811e.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e35fae1b377c23aa5fd2d309a190c2d0f73d54ec">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-7.3.0_d276643ad08f812b446b56d34384bc0f35f21499.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-7.3.0_5c139c1c38147337fedabe559750b0fb8d7e9a5b.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\libs\crouton-1.8.5.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f085933fd4fad9693229d105d6d6d01fa90bb599">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\crouton-1.8.5_6629749a783af90f812d92e624f7949a77409156.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.splunk.mint\mint\4.2\c02645acbcdb5b1d242ab788f9ef537459321bff\mint-4.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c02645acbcdb5b1d242ab788f9ef537459321bff">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\mint-4.2_b83ec5817e846d4390d8f4321aa2c9e01d43d244.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\libs\StartAppInApp-2.4.13.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8cd53902ba86c7cb7bd77918d28447a6e568f90c">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\StartAppInApp-2.4.13_4034b2ec15cb4fe1191760c9df70bd1c55fa7167.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a0ce76dfaccbfbd6c551ed2174280aaabe60fe47">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-7.3.0_e53fc63f62739d1eedadb4c604bb51367f9fef3d.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b2c07cdb814fe988ad05f7b4d767a841514a5991">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-7.3.0_7d1e65a279903118f3158a173ed0b47519c726df.jar" />
+    </item>
+    <item
+        jar="F:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\22.1.1\support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\support-annotations-22.1.1_22d27c991837178fa47e612bdd46606eb5d0e17e.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0180d031a7b54dabb93b4af3869468b55dc938bd">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appstate-7.3.0_72eef3bfa972edecd32b5b14f177277b2ec4406e.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4f4fe3c23776540625f3c2844152a7510fddf9f1">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-7.3.0_6f00fbbc25442891e2ede40fc2aced5b21960493.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="59652857a825fff0de62166fca1bc9553cc01abb">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-7.3.0_adcff88ef4aca603a7f3a7f59dce1755ebe94a3d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.3.0\1b355f73402020c5a0dcca58affc3ec3dfeabac1\okio-1.3.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1b355f73402020c5a0dcca58affc3ec3dfeabac1">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\okio-1.3.0_129db21943a48321f3fc3b05f16e4725120d8cc2.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-7.3.0_e53a4dc244df1b070944dd790ade0465321ae0de.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-core\4.48\e579bd2905d0399af5029aaaf9817d5fa0ca88a5\ormlite-core-4.48.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\ormlite-core-4.48_0c1f5132b5b67b94438fe9ad50aa92bd0ecc9641.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-7.3.0_a8776090dbc8ec632ef94e73bc8b203b7c00b25f.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\libs\internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\internal_impl-22.1.1_1b5bb8e7ce1087be1ce47e209085e93686c61ead.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-7.3.0_d5eb2c9407e4ef565afb12a21261b5b9a1e4f422.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9c9dea9e85aceb09d95df5e6f7bc8a43fc286068">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-7.3.0_008706f8fb7b8f32caacc20eaad9e9e8247bd235.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="565a01f90f1529f73362707c4c185d0623a68782">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-7.3.0_27177bd1c1f0eedf0f2da5e6560b334fd6172e4e.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\libs\java-json.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="edad9c5de6fb8df07c535a47045956026011ffa3">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\java-json_fa519ff638190e40c84818554133afd3c2edb875.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="0708ef60917bf94913fe9ef972a655b99462dca7">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-7.3.0_956329707a48a04501618934178e9ab79c9f4dcb.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3b4ff5c39dace8f3b4ab4cab8191785547a0815f">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-7.3.0_c96b9d03545b100d756421de4f4363a7e16d184d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-android\4.48\afa06f539a4026c10b247386312aa67404b80a16\ormlite-android-4.48.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="afa06f539a4026c10b247386312aa67404b80a16">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\ormlite-android-4.48_f36ef3b839478551d009ded9878c754102a43305.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\libs\hellocharts-library-1.5.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5484084cfae9211d47e3134b7327e0e50fa5e255">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\hellocharts-library-1.5.4_aaf25c01754d56d60e8d634245c0915e821256bf.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-7.3.0_b2832d55159117136ba32cabedcd7494965fdeff.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="7215ac1f2fca947b9415a6ee2a1bf991364aab24">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-7.3.0_5c54e1861065df5b5885842b0a3493cd2cf745c3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.3.0\2e7bc7033dc2c8423e661224171b3133fb155b28\okhttp-2.3.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="2e7bc7033dc2c8423e661224171b3133fb155b28">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\okhttp-2.3.0_b311ab2dea1a1842f2d9b49357bb23d7f35defc8.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3988694bf9d8186ff97ad5cdfa4ed88b5010fe08">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-7.3.0_ef6adc2e871c19e4751851b83ef7c867ef95a01e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\gson-2.3.1_3d67bc6296728dce11d45e3fe02a4d0f0bf336e9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Administrator\.gradle\caches\modules-2\files-2.1\com.squareup\otto\1.3.7\69d90fd7fb70e54746e26c10454c220e40a775ce\otto-1.3.7.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="69d90fd7fb70e54746e26c10454c220e40a775ce">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\otto-1.3.7_ddd9153220d7518eb6582ddf18fe6418967525a7.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-22.1.1_5417700cc572612584fef27700c970b12e743b62.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="5ea948d825957be6c4358c48422bee60eef2d487">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-7.3.0_a3c9587b5dde3f1b8cf850a4dabd0be84ca95c0d.jar" />
+    </item>
+    <item
+        jar="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="E:\Projects\LastEarthquakes-master\ENT\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-22.1.1_4d27f694651256d58a34c7ba7f7f2609db194b8d.jar" />
+    </item>
+
+</items>
