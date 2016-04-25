@@ -1,7 +1,7 @@
-package com.Uddhav.ENTTool;//package name
+package com.Uddhav.ENTTool;
 
-import android.app.ProgressDialog; //says “Please wait…….”. Takes “Context” as agr.
-import android.content.Intent; //
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -36,195 +36,209 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements OnItemClickListener, OnScrollListener {
 
-	private ProgressDialog	pd;
-	private ListView		list;
-	private int				currentScrollState, currentFirstVisibleItem, currentVisibleItemCount, currentTotalItemCount;
-	private ListviewAdapter	adapter;
-	private StartAppAd		startAppAd;
-	private TextView		tvEmptyMessage;
+    private ProgressDialog pd;
+    private ListView list;
+    private int currentScrollState, currentFirstVisibleItem, currentVisibleItemCount, currentTotalItemCount;
+    private ListviewAdapter adapter;
+    private StartAppAd startAppAd;
+    private TextView tvEmptyMessage;
 
-	private boolean			isConnectToInternet	= true;
+    private boolean isConnectToInternet = true;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		StartAppSDK.init(this, getString(R.string.StartApp_AccountId), getString(R.string.StartApp_AppId), true);
+        StartAppSDK.init(this, getString(R.string.StartApp_AccountId), getString(R.string.StartApp_AppId), true);
+// StartAppSDK is decompiled class file. Two blank string means, it would take default AccountID and AppID.
+        // Since, this file is already decompiled, I can't see the Java Docs.
 
-		ActionBar ab = getSupportActionBar(); // for icon, title etc. Retrieves a references for this activity actionbar
+        ActionBar ab = getSupportActionBar(); // for icon, title etc. Retrieves a references for this activity actionbar
 
-		ab.setDisplayShowHomeEnabled(true); // for icon. Caz, icon, here, is used as CustomView
-		ab.setIcon(R.mipmap.ic_launcher);
-		ab.setTitle("  " + getResources().getString(R.string.app_name)); // "string", here, is another inner class of R auto generated class
+        ab.setDisplayShowHomeEnabled(true); // for icon. Caz, icon, here, is used as CustomView
 
-		ColorDrawable cd = new ColorDrawable(getResources().getColor(R.color.statusbar));
-		ab.setBackgroundDrawable(cd);
+        ab.setIcon(R.mipmap.ic_launcher);
+        ab.setTitle("  " + getResources().getString(R.string.app_name));// "string", here, is another inner class of R, auto generated class
 
-		ab.setDisplayShowTitleEnabled(false);
-		ab.setDisplayShowTitleEnabled(true);
+        ColorDrawable cd = new ColorDrawable(getResources().getColor(R.color.statusbar));
+        //Drawable means anything that can be drawn. ColorDrawable means like an ink to fill the colors. ColorDrawable is
+        // defined in color.xml file in the resource directory in Android.
+        // Syntax: ColorDrawable(Object_to_draw_color().getColor(COLOR))
 
-		setContentView(R.layout.activity_main);
 
-		AppSettings.setDefaultSettings();
+        ab.setBackgroundDrawable(cd); //It makes ActionBar is drawable with cd ink. Top title bar is the ActionBar
 
-		if (new LastEarthquakeDate().GetRowCount() == 0) {
-			LastEarthquakeDate led = new LastEarthquakeDate();
-			led.setDateMilis(606175200000l);
-			led.Insert();
-		}
+        ab.setDisplayShowTitleEnabled(false);
+        ab.setDisplayShowTitleEnabled(true); //title enabled display is set. Means, title/subtitle are enabled
 
-		startAppAd = new StartAppAd(this);
+        setContentView(R.layout.activity_main);
+        //AppCompatActivity.setContentView();. This sets the activity content from the layout resource
+        // Activity.setContentView(activity_main.xml's ID) is used to set the layout for the MainActivity.
+        // All layout resources are defined in activity_main.xml file, by default.
 
-		// Banner banner = (com.startapp.android.publish.banner.Banner) findViewById(R.id.startAppBanner);
-		// banner.showBanner();
+        AppSettings.setDefaultSettings();
+        // I can see the classes residing in child folders
+        // AppSettings is Uddhav created class. So, no Java Doc
 
-		startAppAd.showAd();
-		startAppAd.loadAd();
+        if (new LastEarthquakeDate().GetRowCount() == 0) {
+            LastEarthquakeDate led = new LastEarthquakeDate();
+            led.setDateMilis(606175200000l);
+            led.Insert();// either creates or updates the ID for this led object.
+            // Note: when new things are created, Android Studio associates that thing with an his ID.
+        }
 
-		tvEmptyMessage = (TextView) findViewById(R.id.tv_empty_message);
+        startAppAd = new StartAppAd(this); // for the Publish
 
-		list = (ListView) findViewById(R.id.list2);
-		list.setOnItemClickListener(this);
-		list.setOnScrollListener(this);
+        // Banner banner = (com.startapp.android.publish.banner.Banner) findViewById(R.id.startAppBanner);
+        // banner.showBanner();
 
-		if (!SyncService.isServiceRunning) {
-			Log.i("MainActivity", "Service Started");
-			Intent intent = new Intent(getBaseContext(), SyncService.class);
-			startService(intent);
+        startAppAd.showAd(); //shows Ad, Means, AdddDisplayListener, and returns boolean
+        startAppAd.loadAd(); //loads the displayListener and returns the boolean
 
-			pd = new ProgressDialog(MainActivity.this);
-			pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-			pd.setTitle(getString(R.string.PleaseWait));
-			pd.setMessage(getString(R.string.DatasLoading));
-			pd.setCancelable(false);
-			pd.setIndeterminate(false);
-			pd.show();
-		}
+        tvEmptyMessage = (TextView) findViewById(R.id.tv_empty_message);
 
-	}
+        list = (ListView) findViewById(R.id.list2); //adds ListView in this, MainActivity. This list is for storing
+        // earthquakes record in GUI
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+        // The below two lines give error. I couldn't complete this in time, because I have presentation in 3 days.
+//        list.setOnItemClickListener(this); // adds listeners on that ListView
+//        list.setOnScrollListener(this); //
 
-		if (isConnectToInternet) {
-			List<EarthQuakes> EarthQuakeList = new EarthQuakes().GetAllData();
+        if (!SyncService.isServiceRunning) {
+            Log.i("MainActivity", "Servis Started");
+            Intent intent = new Intent(getBaseContext(), SyncService.class);
+            startService(intent);
 
-			if (EarthQuakeList.size() > 0) {
-				adapter = new ListviewAdapter(MainActivity.this, EarthQuakeList);
-				adapter.notifyDataSetChanged();
-				list.setAdapter(adapter);
-				list.setSelectionFromTop(currentFirstVisibleItem, 0);
-			}
-		}
+            pd = new ProgressDialog(MainActivity.this);
+            pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pd.setTitle(getString(R.string.PleaseWait));
+            pd.setMessage(getString(R.string.DatasLoading));
+            pd.setCancelable(false);
+            pd.setIndeterminate(false);
+            pd.show();
+        }
 
-	}
+    }
 
-	@Subscribe
-	public void messageReceived(EBus event) {
-		Log.i("MainActivity", "Tetiklendi! " + event.getStatus());
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-		if (event.getStatus() == 999) {
-			isConnectToInternet = false;
-			list.setEmptyView(tvEmptyMessage);
-			list.setAdapter(null);
-		}
-		else {
-			isConnectToInternet = true;
-			List<EarthQuakes> EarthQuakeList = new EarthQuakes().GetAllData();
+        if (isConnectToInternet) {
+            List<EarthQuakes> EarthQuakeList = new EarthQuakes().GetAllData();
 
-			if (EarthQuakeList.size() > 0) {
-				adapter = new ListviewAdapter(MainActivity.this, EarthQuakeList);
-				adapter.notifyDataSetChanged();
-				list.setAdapter(adapter);
-				list.setSelectionFromTop(currentFirstVisibleItem, 0);
-			}
+            if (EarthQuakeList.size() > 0) {
+                adapter = new ListviewAdapter(MainActivity.this, EarthQuakeList);
+                adapter.notifyDataSetChanged();
+                list.setAdapter(adapter);
+                list.setSelectionFromTop(currentFirstVisibleItem, 0);
+            }
+        }
 
-		}
+    }
 
-		if (pd != null && pd.isShowing()) {
-			pd.dismiss();
-			pd = null;
-		}
-	}
+    @Subscribe
+    public void messageReceived(EBus event) {
+        Log.i("MainActivity", "Triggered! " + event.getStatus());
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
+        if (event.getStatus() == 999) {
+            isConnectToInternet = false;
+            list.setEmptyView(tvEmptyMessage);
+            list.setAdapter(null);
+        } else {
+            isConnectToInternet = true;
+            List<EarthQuakes> EarthQuakeList = new EarthQuakes().GetAllData();
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
+            if (EarthQuakeList.size() > 0) {
+                adapter = new ListviewAdapter(MainActivity.this, EarthQuakeList);
+                adapter.notifyDataSetChanged();
+                list.setAdapter(adapter);
+                list.setSelectionFromTop(currentFirstVisibleItem, 0);
+            }
 
-		if (item.getItemId() == R.id.action_main) {
+        }
 
-			Intent i1 = new Intent(MainActivity.this, SettingsActivity.class);
-			startActivity(i1);
+        if (pd != null && pd.isShowing()) {
+            pd.dismiss();
+            pd = null;
+        }
+    }
 
-			return true;
-		}
-		else if (item.getItemId() == R.id.chart_main) {
-			Intent i1 = new Intent(MainActivity.this, ChartActivity.class);
-			startActivity(i1);
-		}
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
 
-		return super.onOptionsItemSelected(item);
-	}
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-	@Override
-	public void onScrollStateChanged(AbsListView view, int scrollState) {
-		this.currentScrollState = scrollState;
-		this.isScrollCompleted();
-	}
+        if (item.getItemId() == R.id.action_main) {
 
-	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-		this.currentFirstVisibleItem = firstVisibleItem;
-		this.currentVisibleItemCount = visibleItemCount;
-		this.currentTotalItemCount = totalItemCount;
-	}
+            Intent i1 = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(i1);
 
-	private void isScrollCompleted() {
+            return true;
+        } else if (item.getItemId() == R.id.activity_about) {
+            Intent i2 = new Intent(MainActivity.this, aboutActivity.class);
+            startActivity(i2);
 
-		if (currentFirstVisibleItem + currentVisibleItemCount >= currentTotalItemCount) {
-			if (this.currentVisibleItemCount > 0 && this.currentScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-			}
-		}
-	}
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState) {
+        this.currentScrollState = scrollState;
+        this.isScrollCompleted();
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> parent1, View view, int position, long id) {
-		try {
-			EarthQuakes eq = (EarthQuakes) parent1.getAdapter().getItem(position);
+    @Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+        this.currentFirstVisibleItem = firstVisibleItem;
+        this.currentVisibleItemCount = visibleItemCount;
+        this.currentTotalItemCount = totalItemCount;
+    }
 
-			Intent i = new Intent(MainActivity.this, com.Uddhav.ENTTool.MapsActivity.class);
-			i.putExtra("selectedItem", eq.getDateMilis());
-			startActivity(i);
-		}
-		catch (Exception e) {
-			System.out.println("Error catched!");
-			Tools.catchException(e);
-		}
-	}
+    private void isScrollCompleted() {
 
-	@Override
-	protected void onStart() {
-		super.onStart();
-		App.bus.register(this);
-	}
+        if (currentFirstVisibleItem + currentVisibleItemCount >= currentTotalItemCount) {
+            if (this.currentVisibleItemCount > 0 && this.currentScrollState == OnScrollListener.SCROLL_STATE_IDLE) {
 
-	@Override
-	protected void onStop() {
-		super.onStop();
-		App.bus.unregister(this);
-	}
+            }
+        }
+    }
 
-	@Override
-	public void onBackPressed() {
-		startAppAd.onBackPressed();
-		super.onBackPressed();
-	}
+    @Override
+    public void onItemClick(AdapterView<?> parent1, View view, int position, long id) {
+        try {
+            EarthQuakes eq = (EarthQuakes) parent1.getAdapter().getItem(position);
+
+            Intent i = new Intent(MainActivity.this, com.Uddhav.ENTTool.MapsActivity.class);
+            i.putExtra("selectedItem", eq.getDateMilis());
+            startActivity(i);
+        } catch (Exception e) {
+            Tools.catchException(e);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        App.bus.register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        App.bus.unregister(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        startAppAd.onBackPressed();
+        super.onBackPressed();
+    }
 
 }

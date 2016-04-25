@@ -5,41 +5,41 @@ package com.Uddhav.ENTTool.sources.seismicportal;
  */
 public class features<S, T> {
 
-	private S		geometry;
-	private String	type;
-	private String	id;
-	private T		properties;
+    private S geometry;
+    private String type;
+    private String id;
+    private T properties;
 
-	public S getGeometry() {
-		return geometry;
-	}
+    public S getGeometry() {
+        return geometry;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setGeometry(S geometry) {
+        this.geometry = geometry;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public T getProperties() {
-		return properties;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setGeometry(S geometry) {
-		this.geometry = geometry;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public T getProperties() {
+        return properties;
+    }
 
-	public void setProperties(T properties) {
-		this.properties = properties;
-	}
+    public void setProperties(T properties) {
+        this.properties = properties;
+    }
 
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Outside border/shadow -->
     <item>
-        <shape android:shape="oval" >
+        <shape android:shape="oval">
             <size
-                android:height="200dp"
-                android:width="200dp" />
+                android:width="200dp"
+                android:height="200dp" />
 
             <gradient
                 android:angle="90"
@@ -21,7 +21,7 @@
         android:left="1dp"
         android:right="1dp"
         android:top="1dp">
-        <shape android:shape="oval" >
+        <shape android:shape="oval">
             <gradient
                 android:angle="90"
                 android:endColor="#c9c9c9"
@@ -35,7 +35,7 @@
         android:left="15dp"
         android:right="15dp"
         android:top="15dp">
-        <shape android:shape="oval" >
+        <shape android:shape="oval">
             <gradient
                 android:angle="90"
                 android:endColor="#cbcbcb"
@@ -49,7 +49,7 @@
         android:left="16dp"
         android:right="16dp"
         android:top="16dp">
-        <shape android:shape="oval" >
+        <shape android:shape="oval">
             <solid android:color="#ffffff" />
         </shape>
     </item>
@@ -60,7 +60,7 @@
         android:left="70dp"
         android:right="70dp"
         android:top="70dp">
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <solid android:color="#3b88c2" />
 
             <corners android:radius="20dp" />
@@ -71,7 +71,7 @@
         android:left="75dp"
         android:right="75dp"
         android:top="75dp">
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <solid android:color="#ffffff" />
 
             <corners android:radius="20dp" />
@@ -82,7 +82,7 @@
         android:left="80dp"
         android:right="80dp"
         android:top="80dp">
-        <shape android:shape="rectangle" >
+        <shape android:shape="rectangle">
             <solid android:color="#3b88c2" />
 
             <corners android:radius="20dp" />

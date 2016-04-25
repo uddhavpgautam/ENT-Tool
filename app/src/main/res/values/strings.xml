@@ -2,9 +2,10 @@
 
 <resources>
 
-    <string name="app_name">ENT Tool</string>
+    <string name="app_name">Earthquakes</string>
     <string name="title_activity">ENT Tool</string>
     <string name="menu_settings">Settings</string>
+    <string name="about">About</string>
     <string name="EarthquakesDetect">Earthquake Detected!</string>
     <string name="NoConnection">Internet connection was not found!</string>
     <string name="PleaseWait">Please Wait...</string>
@@ -20,6 +21,12 @@
     <string name="Longitude">Longitude</string>
     <string name="ChartAxisX">Day</string>
     <string name="ChartAxisY">Magnitude</string>
+
+    <string name="DevelopedBy">Developed By</string>
+    <string name="DeveloperName"> Uddhav Gautam</string>
+    <string name="DeveloperEmail"> upgautam@ualr.ed</string>
+    <string name="DeveloperUniversity"> Univ. of Arkansas at Little Rock </string>
+    <string name="Professor">Prof. Dr. Kenji Yoshigoe</string>
 
 
 </resources>

@@ -5,32 +5,32 @@ package com.Uddhav.ENTTool.sources.seismicportal;
  */
 public class object<S, T> {
 
-	private String	type;
-	private S		metadata;
-	private T		features;
+    private String type;
+    private S metadata;
+    private T features;
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public S getMetadata() {
-		return metadata;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public T getFeatures() {
-		return features;
-	}
+    public S getMetadata() {
+        return metadata;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public void setMetadata(S metadata) {
+        this.metadata = metadata;
+    }
 
-	public void setMetadata(S metadata) {
-		this.metadata = metadata;
-	}
+    public T getFeatures() {
+        return features;
+    }
 
-	public void setFeatures(T features) {
-		this.features = features;
-	}
+    public void setFeatures(T features) {
+        this.features = features;
+    }
 
 }

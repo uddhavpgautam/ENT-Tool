@@ -16,108 +16,110 @@ import java.util.Comparator;
  */
 
 @DatabaseTable(tableName = "LastEarthquakeDate")
+// This is the annotation (@). It is just telling metadata information
+// annotation line does not do anything in the class
 public class LastEarthquakeDate implements Parcelable, Comparator<LastEarthquakeDate> {
 
-	@DatabaseField(id = true) private int	id;
-	@DatabaseField private Long				DateMilis;
+    public static final Creator<LastEarthquakeDate> CREATOR = new Creator<LastEarthquakeDate>() {
+        //Parceable interface includes the Creator interface. Parceable is contained in android.os.
+        //Creator<T>. T is any abstract  parceable instance.
+        @Override
+        public LastEarthquakeDate createFromParcel(Parcel in) {
+            return new LastEarthquakeDate(in);
+        }
 
-	public LastEarthquakeDate() {
-		this.id = 1;
-	}
+        // earthquake is included as a parcel. So, you just return an parcel object. Parcel means, like a bag.
+        @Override
+        public LastEarthquakeDate[] newArray(int size) {
+            return new LastEarthquakeDate[size];
+        }
+    };
+    @DatabaseField(id = true)
+    private int id;
+    @DatabaseField
+    private Long DateMilis;
 
-	protected LastEarthquakeDate(Parcel in) {
-		id = in.readInt();
-	}
+    public LastEarthquakeDate() {
+        this.id = 1;
+    }
 
-	public static final Creator<LastEarthquakeDate> CREATOR = new Creator<LastEarthquakeDate>() {
-		@Override
-		public LastEarthquakeDate createFromParcel(Parcel in) {
-			return new LastEarthquakeDate(in);
-		}
+    protected LastEarthquakeDate(Parcel in) {
+        id = in.readInt();
+    }
 
-		@Override
-		public LastEarthquakeDate[] newArray(int size) {
-			return new LastEarthquakeDate[size];
-		}
-	};
+    public void Insert() {
 
-	public void Insert() {
+        try {
+            Dao<LastEarthquakeDate, Integer> Missionsinsert = (DatabaseHelper.getDbHelper()).getLastEarthquakeDateDataHelper();
+            LastEarthquakeDate existenceCheck = Missionsinsert.queryForId(this.id); //retrieves an object associated with specific ID. existence Check, here, is that object.
 
-		try {
-			Dao<LastEarthquakeDate, Integer> Missionsinsert = (DatabaseHelper.getDbHelper()).getLastEarthquakeDateDataHelper();
-			LastEarthquakeDate existenceCheck = Missionsinsert.queryForId(this.id);
+            if (existenceCheck != null) {
+                Missionsinsert.update(this);
+            } else {
+                Missionsinsert.create(this);
+            }
 
-			if (existenceCheck != null) {
-				Missionsinsert.update(this);
-			}
-			else {
-				Missionsinsert.create(this);
-			}
+        } catch (SQLException e) {
+            Tools.catchException(e);
+        }
+    }
 
-		}
-		catch (SQLException e) {
-			Tools.catchException(e);
-		}
-	}
+    public Long GetLastEarthquakeMilisDate() {
+        LastEarthquakeDate lastDate = null;
+        try {
+            Dao<LastEarthquakeDate, Integer> dao = DatabaseHelper.getDbHelper().getLastEarthquakeDateDataHelper();
+            lastDate = dao.queryForId(1);
+        } catch (Exception e) {
+            Tools.catchException(e);
+        }
+        return lastDate.getDateMilis();
+    }
 
-	public Long GetLastEarthquakeMilisDate() {
-		LastEarthquakeDate lastDate = null;
-		try {
-			Dao<LastEarthquakeDate, Integer> dao = DatabaseHelper.getDbHelper().getLastEarthquakeDateDataHelper();
-			lastDate = dao.queryForId(1);
-		}
-		catch (Exception e) {
-			Tools.catchException(e);
-		}
-		return lastDate.getDateMilis();
-	}
+    public int GetRowCount() {
+        int count = 0;
 
-	public int GetRowCount() {
-		int count = 0;
+        try {
+            Dao<LastEarthquakeDate, Integer> dao = DatabaseHelper.getDbHelper().getLastEarthquakeDateDataHelper(); //dao is to count the LastEarthquakes
+            count = (int) dao.countOf();
+        } catch (Exception e) {
+            Tools.catchException(e);
+        }
 
-		try {
-			Dao<LastEarthquakeDate, Integer> dao = DatabaseHelper.getDbHelper().getLastEarthquakeDateDataHelper();
-			count = (int) dao.countOf();
-		}
-		catch (Exception e) {
-			Tools.catchException(e);
-		}
+        return count;
+    }
 
-		return count;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public Long getDateMilis() {
+        return DateMilis;
+    }
 
-	public Long getDateMilis() {
-		return DateMilis;
-	}
+    public void setDateMilis(Long dateMilis) {
+        DateMilis = dateMilis;
+    }
 
-	public void setDateMilis(Long dateMilis) {
-		DateMilis = dateMilis;
-	}
+    @Override
+    public int describeContents() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
+        dest.writeInt(id);
+    }
 
-		dest.writeInt(id);
-	}
-
-	@Override
-	public int compare(LastEarthquakeDate lhs, LastEarthquakeDate rhs) {
-		return (int) (lhs.DateMilis - rhs.DateMilis);
-	}
+    @Override
+    public int compare(LastEarthquakeDate lhs, LastEarthquakeDate rhs) {
+        return (int) (lhs.DateMilis - rhs.DateMilis);
+    }
 
 }

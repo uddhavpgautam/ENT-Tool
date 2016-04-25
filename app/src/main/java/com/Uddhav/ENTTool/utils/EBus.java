@@ -5,17 +5,17 @@ package com.Uddhav.ENTTool.utils;
  */
 public class EBus {
 
-	private int	status;
+    private int status;
 
-	public EBus(int s) {
-		status = s;
-	}
+    public EBus(int s) {
+        status = s;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

@@ -7,23 +7,23 @@ import java.util.List;
  */
 public class geometry {
 
-	private String		type;
-	private List<Float>	coordinates;
+    private String type;
+    private List<Float> coordinates;
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public List<Float> getCoordinates() {
-		return coordinates;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+    public List<Float> getCoordinates() {
+        return coordinates;
+    }
 
-	public void setCoordinates(List<Float> coordinates) {
-		this.coordinates = coordinates;
-	}
+    public void setCoordinates(List<Float> coordinates) {
+        this.coordinates = coordinates;
+    }
 
 }

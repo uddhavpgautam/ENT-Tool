@@ -27,177 +27,163 @@ import java.util.List;
  */
 public class SyncService extends Service {
 
-	private int				mStartMode;
-	private IBinder			mBinder;
-	private boolean			mAllowRebind;
-	private Handler			handler;
+    public static boolean isServiceRunning = false;
+    public static Context AppContextService;
+    private int mStartMode;
+    private IBinder mBinder;
+    private boolean mAllowRebind;
+    private Handler handler;
 
-	public static boolean	isServiceRunning	= false;
+    @Override
+    public void onCreate() {
+        AppContextService = getApplicationContext();
+        App.bus.register(this);
+        handler = new Handler(Looper.getMainLooper());
+    }
 
-	public static Context	AppContextService;
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        isServiceRunning = true;
 
-	@Override
-	public void onCreate() {
-		AppContextService = getApplicationContext();
-		App.bus.register(this);
-		handler = new Handler(Looper.getMainLooper());
-	}
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-	@Override
-	public int onStartCommand(Intent intent, int flags, int startId) {
-		isServiceRunning = true;
+                while (isServiceRunning) {
 
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
+                    if (Tools.isOnline(AppContextService)) {
 
-				while (isServiceRunning) {
+                        Log.i("SyncService", "Service Running");
 
-					if (Tools.isOnline(AppContextService)) {
+                        updateSyncPeriod();
 
-						Log.i("SyncService", "Service Running");
+                        int day = AppSettings.getInstance().getTimeInterval();
+                        int source = AppSettings.getInstance().getSource();
 
-						updateSyncPeriod();
+                        SaveResponseToDB clientHelper = new SaveResponseToDB();
 
-						int day = AppSettings.getInstance().getTimeInterval();
-						int source = AppSettings.getInstance().getSource();
+                        if (source == 0) {
+                            clientHelper.saveDatabaseUsgs(CreateRequestUrl.URL_USGS(day));
+                            clientHelper.saveDatabaseSeismicPortal(CreateRequestUrl.URL_SEISMICPORTAL(day));
+                        } else if (source == 1) {
+                            clientHelper.saveDatabaseSeismicPortal(CreateRequestUrl.URL_SEISMICPORTAL(day));
+                        } else if (source == 2) {
+                            clientHelper.saveDatabaseUsgs(CreateRequestUrl.URL_USGS(day));
+                        }
 
-						SaveResponseToDB clientHelper = new SaveResponseToDB();
+                        notificationHandler();
 
-						if (source == 0) {
-							clientHelper.saveDatabaseUsgs(CreateRequestUrl.URL_USGS(day));
-							clientHelper.saveDatabaseSeismicPortal(CreateRequestUrl.URL_SEISMICPORTAL(day));
-							clientHelper.saveDatabaseKoeri(CreateRequestUrl.URL_KOERI(day));
-						}
-						else if (source == 1) {
-							clientHelper.saveDatabaseKoeri(CreateRequestUrl.URL_KOERI(day));
-						}
-						else if (source == 2) {
-							clientHelper.saveDatabaseSeismicPortal(CreateRequestUrl.URL_SEISMICPORTAL(day));
-						}
-						else if (source == 3) {
-							clientHelper.saveDatabaseUsgs(CreateRequestUrl.URL_USGS(day));
-						}
+                        App.bus.post(new EBus(123));
 
-						notificationHandler();
+                    } else {
+                        App.bus.post(new EBus(999));
+                    }
 
-						App.bus.post(new EBus(123));
+                    try {
+                        Thread.sleep(1000 * 60 * Tools.syncPeriod);
+                    } catch (InterruptedException e) {
+                        Tools.catchException(e);
+                    }
+                }
 
-					}
-					else {
-						App.bus.post(new EBus(999));
-					}
+            }
+        }).start();
 
-					try {
-						Thread.sleep(1000 * 60 * Tools.syncPeriod);
-					}
-					catch (InterruptedException e) {
-						Tools.catchException(e);
-					}
-				}
+        return Service.START_STICKY;
+    }
 
-			}
-		}).start();
+    private void updateSyncPeriod() {
 
-		return Service.START_STICKY;
-	}
+        int refreshtime = AppSettings.getInstance().getUpdatePeriod();
 
-	private void updateSyncPeriod() {
+        if (refreshtime == 0) {
+            Tools.syncPeriod = 2;
+        } else if (refreshtime == 1) {
+            Tools.syncPeriod = 15;
+        } else if (refreshtime == 2) {
+            Tools.syncPeriod = 30;
+        } else if (refreshtime == 3) {
+            Tools.syncPeriod = 60;
+        } else {
+            Tools.syncPeriod = 2;
+        }
+    }
 
-		int refreshtime = AppSettings.getInstance().getUpdatePeriod();
+    private void notificationHandler() {
 
-		if (refreshtime == 0) {
-			Tools.syncPeriod = 2;
-		}
-		else if (refreshtime == 1) {
-			Tools.syncPeriod = 15;
-		}
-		else if (refreshtime == 2) {
-			Tools.syncPeriod = 30;
-		}
-		else if (refreshtime == 3) {
-			Tools.syncPeriod = 60;
-		}
-		else {
-			Tools.syncPeriod = 2;
-		}
-	}
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                showNotification();
+            }
+        });
+    }
 
-	private void notificationHandler() {
+    private void showNotification() {
+        List<EarthQuakes> newEarthquakes = new EarthQuakes().newEarthquakes();
 
-		handler.post(new Runnable() {
-			@Override
-			public void run() {
-				showNotification();
-			}
-		});
-	}
+        if (newEarthquakes.size() > 0) {
 
-	private void showNotification() {
-		List<EarthQuakes> newEarthquakes = new EarthQuakes().newEarthquakes();
+            if (AppSettings.getInstance().isNotifications()) {
+                createNotification(getString(R.string.EarthquakesDetect), //
+                        "" + newEarthquakes.get(0).getMagnitude() + "  |  " + newEarthquakes.get(0).getLocationName());
+            }
 
-		if (newEarthquakes.size() > 0) {
+            LastEarthquakeDate led = new LastEarthquakeDate();
+            led.setDateMilis(new EarthQuakes().GetLastEarthQuakeDate());
+            led.Insert();
+        }
+    }
 
-			if (AppSettings.getInstance().isNotifications()) {
-				createNotification(getString(R.string.EarthquakesDetect), //
-						"" + newEarthquakes.get(0).getMagnitude() + "  |  " + newEarthquakes.get(0).getLocationName());
-			}
+    private void createNotification(String strContentTitle, String strContentText) {
 
-			LastEarthquakeDate led = new LastEarthquakeDate();
-			led.setDateMilis(new EarthQuakes().GetLastEarthQuakeDate());
-			led.Insert();
-		}
-	}
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(SyncService.this) //
+                .setSmallIcon(R.drawable.icon1) //
+                .setContentTitle(strContentTitle) //
+                .setContentText(strContentText);
 
-	private void createNotification(String strContentTitle, String strContentText) {
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(MainActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(SyncService.this) //
-				.setSmallIcon(R.drawable.icon1) //
-				.setContentTitle(strContentTitle) //
-				.setContentText(strContentText);
+        builder.setContentIntent(resultPendingIntent);
+        builder.setAutoCancel(true);
+        builder.setLights(Color.BLUE, 500, 500);
 
-		Intent resultIntent = new Intent(this, MainActivity.class);
-		TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-		stackBuilder.addParentStack(MainActivity.class);
-		stackBuilder.addNextIntent(resultIntent);
-		PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        if (AppSettings.getInstance().isVibration()) {
+            long[] pattern = {500, 500};
+            builder.setVibrate(pattern);
+        }
+        if (AppSettings.getInstance().isSound()) {
+            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            builder.setSound(alarmSound);
+        }
 
-		builder.setContentIntent(resultPendingIntent);
-		builder.setAutoCancel(true);
-		builder.setLights(Color.BLUE, 500, 500);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+    }
 
-		if (AppSettings.getInstance().isVibration()) {
-			long[] pattern = { 500, 500 };
-			builder.setVibrate(pattern);
-		}
-		if (AppSettings.getInstance().isSound()) {
-			Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-			builder.setSound(alarmSound);
-		}
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
 
-		NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		manager.notify(0, builder.build());
-	}
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return mAllowRebind;
+    }
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		return mBinder;
-	}
+    @Override
+    public void onRebind(Intent intent) {
 
-	@Override
-	public boolean onUnbind(Intent intent) {
-		return mAllowRebind;
-	}
+    }
 
-	@Override
-	public void onRebind(Intent intent) {
-
-	}
-
-	@Override
-	public void onDestroy() {
-		isServiceRunning = false;
-		App.bus.unregister(this);
-	}
+    @Override
+    public void onDestroy() {
+        isServiceRunning = false;
+        App.bus.unregister(this);
+    }
 
 }

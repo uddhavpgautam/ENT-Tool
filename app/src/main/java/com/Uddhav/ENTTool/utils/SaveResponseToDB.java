@@ -1,9 +1,6 @@
 package com.Uddhav.ENTTool.utils;
 
 import com.Uddhav.ENTTool.database.EarthQuakes;
-import com.Uddhav.ENTTool.sources.koeri.earhquake;
-import com.Uddhav.ENTTool.sources.koeri.eqlist;
-import com.Uddhav.ENTTool.sources.koeri.item;
 import com.Uddhav.ENTTool.sources.seismicportal.features;
 import com.Uddhav.ENTTool.sources.seismicportal.geometry;
 import com.Uddhav.ENTTool.sources.seismicportal.object;
@@ -21,8 +18,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import org.json.XML;
-
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -33,168 +28,115 @@ import java.util.List;
  */
 public class SaveResponseToDB {
 
-	private int	decimalPlace	= 1;
+    private int decimalPlace = 1;
 
-	public SaveResponseToDB() {
-		// DatabaseHelper.getDbHelper().clearDatabase();
-	}
+    public SaveResponseToDB() {
+        // DatabaseHelper.getDbHelper().clearDatabase();
+    }
 
-	public void saveDatabaseKoeri(String url) {
 
-		try {
+    public void saveDatabaseSeismicPortal(String url) {
 
-			Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat(Tools.DATEFORMAT_KOERI).create();
+        try {
 
-			Type listType = new TypeToken<eqlist<earhquake<List<item>>>>() {
-			}.getType();
+            Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat(Tools.DATEFORMAT_SEISMICPORTAL).create();
 
-			String str1 = getJson(url);
+            Type listType = new TypeToken<object<totalCount, List<features<geometry, properties>>>>() {
+            }.getType(); //TypeToken(items).getType == listType
+            //Type is just used to abstractly define it is one type of object. So, type is like generic way of defining things.
 
-			if (str1 == null || str1.length() < 10) {
-				return;
-			}
+            String json = getJson(url);
 
-			String json = XML.toJSONObject(str1).toString();
+            if (json == null || json.length() < 10) {
+                return;
+            }
 
-			if (json == null || json.length() < 10) {
-				return;
-			}
+            object<totalCount, List<features<geometry, properties>>> items = gson.fromJson(json, listType);
 
-			eqlist<earhquake<List<item>>> items = gson.fromJson(json, listType);
+            if (items == null || items.getFeatures() == null || items.getFeatures().size() == 0) {
+                return;
+            }
 
-			if (items == null || items.getEqlist().getEarhquake() == null) {
-				return;
-			}
+            for (features<geometry, properties> item : items.getFeatures()) { //every feature has geometry and properties
 
-			List<item> list = items.getEqlist().getEarhquake();
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(item.getProperties().getTime());
+                cal.add(Calendar.HOUR_OF_DAY, 2);
 
-			if (list.size() == 0) {
-				return;
-			}
+                EarthQuakes eq = new EarthQuakes();
+                eq.setDateMilis(cal.getTime().getTime());
+                eq.setDepth(round(item.getProperties().getDepth(), decimalPlace));
+                eq.setLatitude(item.getProperties().getLat());
+                eq.setLongitude(item.getProperties().getLon());
+                eq.setLocationName(item.getProperties().getFlynn_region().trim().toUpperCase());
+                eq.setMagnitude(round(item.getProperties().getMag(), decimalPlace));
+                eq.setSource(2);
+                eq.Insert();
 
-			for (item item1 : list) {
+            }
 
-				EarthQuakes eq = new EarthQuakes();
-				eq.setDateMilis(item1.getName().getTime());
-				eq.setDepth(round(item1.getDepth(), decimalPlace));
-				eq.setLatitude(item1.getLat());
-				eq.setLongitude(item1.getLng());
-				eq.setLocationName(item1.getLokasyon().trim().toUpperCase());
-				eq.setMagnitude(round(item1.getMag(), decimalPlace));
-				eq.setSource(1);
+        } catch (Exception e) {
+            Tools.catchException(e);
+        }
 
-				eq.Insert();
+    }
 
-			}
+    public void saveDatabaseUsgs(String url) { //save every earthquake fields like magnitude, latitude etc.
 
-		}
-		catch (Exception e) {
-			Tools.catchException(e);
-		}
+        try {
 
-	}
+            Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat(Tools.DATEFORMAT).create();
+            //Gson is used to serialize/deserialize Json.
+            Type listType = new TypeToken<usgs<metadata1, features1<properties1, geometry1>>>() {
+            }.getType();
+            //below I can use the getFeatures() because item is a type of object defined from Type interface
 
-	public void saveDatabaseSeismicPortal(String url) {
 
-		try {
+            String json = getJson(url); //getJson is using OkHttpClient
 
-			Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat(Tools.DATEFORMAT_SEISMICPORTAL).create();
+            if (json == null || json.length() < 10) { // JSON is null or empty
+                return; //note: any code below return does not get executed. So, I don't need to put in If and else block. If if is true then return becomes last line for this function
+            }
 
-			Type listType = new TypeToken<object<totalCount, List<features<geometry, properties>>>>() {
-			}.getType();
+            usgs<metadata1, features1<properties1, geometry1>> items = gson.fromJson(json, listType);
 
-			String json = getJson(url);
+            if (items == null || items.getFeatures() == null || items.getFeatures().size() == 0) { //check if item null or items' features null or item's features empty
+                return;
+            }
 
-			if (json == null || json.length() < 10) {
-				return;
-			}
+            for (features1<properties1, geometry1> item : items.getFeatures()) {
 
-			object<totalCount, List<features<geometry, properties>>> items = gson.fromJson(json, listType);
+                String str1 = item.getProperties().getPlace().trim().toUpperCase();
+                String str2 = str1.substring(str1.indexOf("OF") + 3);
 
-			if (items == null || items.getFeatures() == null || items.getFeatures().size() == 0) {
-				return;
-			}
+                EarthQuakes eq = new EarthQuakes();
+                eq.setDateMilis(Long.parseLong(item.getProperties().getTime()));
+                eq.setDepth(round(item.getGeometry().getCoordinates().get(2), decimalPlace));
+                eq.setLatitude(item.getGeometry().getCoordinates().get(1));
+                eq.setLongitude(item.getGeometry().getCoordinates().get(0));
+                eq.setLocationName(str2);
+                eq.setMagnitude(round(item.getProperties().getMag(), decimalPlace));
+                eq.setSource(3);
+                eq.Insert();
 
-			for (features<geometry, properties> item : items.getFeatures()) {
+            }
 
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(item.getProperties().getTime());
-				cal.add(Calendar.HOUR_OF_DAY, 2);
+        } catch (Exception e) {
+            Tools.catchException(e);
+        }
 
-				EarthQuakes eq = new EarthQuakes();
-				eq.setDateMilis(cal.getTime().getTime());
-				eq.setDepth(round(item.getProperties().getDepth(), decimalPlace));
-				eq.setLatitude(item.getProperties().getLat());
-				eq.setLongitude(item.getProperties().getLon());
-				eq.setLocationName(item.getProperties().getFlynn_region().trim().toUpperCase());
-				eq.setMagnitude(round(item.getProperties().getMag(), decimalPlace));
-				eq.setSource(2);
-				eq.Insert();
+    }
 
-			}
+    private String getJson(String reqUrl) throws Exception {
+        Request request = new Request.Builder().url(reqUrl).build(); //Request builder is used to get JSON url
+        Response response = new OkHttpClient().newCall(request).execute(); //OkHttpClient is HTTP client to request
+        return response.isSuccessful() ? response.body().string() : "";
+    }
 
-		}
-		catch (Exception e) {
-			Tools.catchException(e);
-		}
-
-	}
-
-	public void saveDatabaseUsgs(String url) {
-
-		try {
-
-			Gson gson = new GsonBuilder().setPrettyPrinting().setDateFormat(Tools.DATEFORMAT).create();
-
-			Type listType = new TypeToken<usgs<metadata1, features1<properties1, geometry1>>>() {
-			}.getType();
-
-			String json = getJson(url);
-
-			if (json == null || json.length() < 10) {
-				return;
-			}
-
-			usgs<metadata1, features1<properties1, geometry1>> items = gson.fromJson(json, listType);
-
-			if (items == null || items.getFeatures() == null || items.getFeatures().size() == 0) {
-				return;
-			}
-
-			for (features1<properties1, geometry1> item : items.getFeatures()) {
-
-				String str1 = item.getProperties().getPlace().trim().toUpperCase();
-				String str2 = str1.substring(str1.indexOf("OF") + 3);
-
-				EarthQuakes eq = new EarthQuakes();
-				eq.setDateMilis(Long.parseLong(item.getProperties().getTime()));
-				eq.setDepth(round(item.getGeometry().getCoordinates().get(2), decimalPlace));
-				eq.setLatitude(item.getGeometry().getCoordinates().get(1));
-				eq.setLongitude(item.getGeometry().getCoordinates().get(0));
-				eq.setLocationName(str2);
-				eq.setMagnitude(round(item.getProperties().getMag(), decimalPlace));
-				eq.setSource(3);
-				eq.Insert();
-
-			}
-
-		}
-		catch (Exception e) {
-			Tools.catchException(e);
-		}
-
-	}
-
-	private String getJson(String reqUrl) throws Exception {
-		Request request = new Request.Builder().url(reqUrl).build();
-		Response response = new OkHttpClient().newCall(request).execute();
-		return response.isSuccessful() ? response.body().string() : "";
-	}
-
-	public float round(float d, int decimalPlace) {
-		BigDecimal bd = new BigDecimal(Float.toString(d));
-		bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
-		return bd.floatValue();
-	}
+    public float round(float d, int decimalPlace) {
+        BigDecimal bd = new BigDecimal(Float.toString(d));
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
+    }
 
 }

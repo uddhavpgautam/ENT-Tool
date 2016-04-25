@@ -14,46 +14,46 @@ import java.util.Date;
 /**
  * Created by Uddhav Gautam on 7.3.2016. upgautam@ualr.edu
  */
-public class MarkerInfoAdapter implements InfoWindowAdapter {
+public class MarkerInfoAdapter implements InfoWindowAdapter { // this is to mark location via google maps when user clicks earthquake records
 
-	LayoutInflater	inflater	= null;
+    LayoutInflater inflater = null;
 
-	TextView		tvLoc, tvMag, tvDepth, tvDate, tvLat, tvLng;
+    TextView tvLoc, tvMag, tvDepth, tvDate, tvLat, tvLng;
 
-	public MarkerInfoAdapter(LayoutInflater inflater) {
-		this.inflater = inflater;
-	}
+    public MarkerInfoAdapter(LayoutInflater inflater) {
+        this.inflater = inflater;
+    }
 
-	@Override
-	public View getInfoContents(Marker marker) {
+    @Override
+    public View getInfoContents(Marker marker) {
 
-		View info = inflater.inflate(R.layout.marker_info, null);
+        View info = inflater.inflate(R.layout.marker_info, null);
 
-		tvLoc = (TextView) info.findViewById(R.id.tv1);
-		tvMag = (TextView) info.findViewById(R.id.tv2);
-		tvDate = (TextView) info.findViewById(R.id.tv3);
-		tvDepth = (TextView) info.findViewById(R.id.tv4);
-		tvLat = (TextView) info.findViewById(R.id.tv5);
-		tvLng = (TextView) info.findViewById(R.id.tv6);
+        tvLoc = (TextView) info.findViewById(R.id.tv1);
+        tvMag = (TextView) info.findViewById(R.id.tv2);
+        tvDate = (TextView) info.findViewById(R.id.tv3);
+        tvDepth = (TextView) info.findViewById(R.id.tv4);
+        tvLat = (TextView) info.findViewById(R.id.tv5);
+        tvLng = (TextView) info.findViewById(R.id.tv6);
 
-		String snippet = marker.getSnippet();
+        String snippet = marker.getSnippet();
 
-		EarthQuakes earthQuakes = new EarthQuakes().getEarthquakesById(Long.parseLong(snippet));
+        EarthQuakes earthQuakes = new EarthQuakes().getEarthquakesById(Long.parseLong(snippet));
 
-		tvLoc.setText(" : " + earthQuakes.getLocationName());
-		tvMag.setText(" : " + earthQuakes.getMagnitude());
-		tvDepth.setText(" : " + earthQuakes.getDepth() + " KM");
-		tvDate.setText(" : " + new Date(earthQuakes.getDateMilis()).toLocaleString());
-		tvLat.setText(" : " + earthQuakes.getLatitude());
-		tvLng.setText(" : " + earthQuakes.getLongitude());
+        tvLoc.setText(" : " + earthQuakes.getLocationName());
+        tvMag.setText(" : " + earthQuakes.getMagnitude());
+        tvDepth.setText(" : " + earthQuakes.getDepth() + " KM");
+        tvDate.setText(" : " + new Date(earthQuakes.getDateMilis()).toLocaleString());
+        tvLat.setText(" : " + earthQuakes.getLatitude());
+        tvLng.setText(" : " + earthQuakes.getLongitude());
 
-		return info;
-	}
+        return info;
+    }
 
-	@Override
-	public View getInfoWindow(Marker marker) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public View getInfoWindow(Marker marker) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

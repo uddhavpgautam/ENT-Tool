@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout1"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="false"
     android:orientation="vertical">
 
     <!-- ListRow Left sied Thumbnail image -->
@@ -24,13 +24,13 @@
             android:gravity="center"
             android:text="7.9"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="#A3A3A3"/>
+            android:background="#A3A3A3" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -47,7 +47,7 @@
                 android:text="TEXT"
                 android:textColor="#040404"
                 android:textSize="15dip"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="27"
-                    android:text="@string/Date"/>
+                    android:text="@string/Date" />
 
                 <TextView
                     android:id="@+id/tv_date"
@@ -67,7 +67,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="1dip"
                     android:layout_weight="73"
-                    android:textSize="13dip"/>
+                    android:textSize="13dip" />
             </LinearLayout>
 
             <LinearLayout
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="27"
-                    android:text="@string/Depth"/>
+                    android:text="@string/Depth" />
 
                 <TextView
                     android:id="@+id/tv_depth"
@@ -89,16 +89,10 @@
                     android:layout_marginRight="5dip"
                     android:layout_weight="73"
                     android:gravity="left"
-                    android:textSize="13dip"/>
+                    android:textSize="13dip" />
             </LinearLayout>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:paddingRight="2dp"
-            android:src="@drawable/arrowicon"/>
     </LinearLayout>
 
 </LinearLayout>

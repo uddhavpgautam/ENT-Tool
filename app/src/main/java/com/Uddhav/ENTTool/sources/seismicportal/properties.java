@@ -4,126 +4,127 @@ package com.Uddhav.ENTTool.sources.seismicportal;
  * Created by Uddhav Gautam on 7.3.2016.
  * upgautam@ualr.edu
  */
+
 import java.util.Date;
 
 public class properties {
 
-	private Date	lastupdate;
-	private String	magtype;
-	private String	evtype;
-	private double	lon;
-	private String	auth;
-	private double	lat;
-	private float	depth;
-	private String	unid;
-	private float	mag;
-	private Date	time;
-	private String	source_id;
-	private String	source_catalog;
-	private String	flynn_region;
+    private Date lastupdate;
+    private String magtype;
+    private String evtype;
+    private double lon;
+    private String auth;
+    private double lat;
+    private float depth;
+    private String unid;
+    private float mag;
+    private Date time;
+    private String source_id;
+    private String source_catalog;
+    private String flynn_region;
 
-	public Date getLastupdate() {
-		return lastupdate;
-	}
+    public Date getLastupdate() {
+        return lastupdate;
+    }
 
-	public String getMagtype() {
-		return magtype;
-	}
+    public void setLastupdate(Date lastupdate) {
+        this.lastupdate = lastupdate;
+    }
 
-	public String getEvtype() {
-		return evtype;
-	}
+    public String getMagtype() {
+        return magtype;
+    }
 
-	public double getLon() {
-		return lon;
-	}
+    public void setMagtype(String magtype) {
+        this.magtype = magtype;
+    }
 
-	public String getAuth() {
-		return auth;
-	}
+    public String getEvtype() {
+        return evtype;
+    }
 
-	public double getLat() {
-		return lat;
-	}
+    public void setEvtype(String evtype) {
+        this.evtype = evtype;
+    }
 
-	public float getDepth() {
-		return depth;
-	}
+    public double getLon() {
+        return lon;
+    }
 
-	public String getUnid() {
-		return unid;
-	}
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
 
-	public float getMag() {
-		return mag;
-	}
+    public String getAuth() {
+        return auth;
+    }
 
-	public Date getTime() {
-		return time;
-	}
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
 
-	public String getSource_id() {
-		return source_id;
-	}
+    public double getLat() {
+        return lat;
+    }
 
-	public String getSource_catalog() {
-		return source_catalog;
-	}
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
 
-	public String getFlynn_region() {
-		return flynn_region;
-	}
+    public float getDepth() {
+        return depth;
+    }
 
-	public void setLastupdate(Date lastupdate) {
-		this.lastupdate = lastupdate;
-	}
+    public void setDepth(float depth) {
+        this.depth = depth;
+    }
 
-	public void setMagtype(String magtype) {
-		this.magtype = magtype;
-	}
+    public String getUnid() {
+        return unid;
+    }
 
-	public void setEvtype(String evtype) {
-		this.evtype = evtype;
-	}
+    public void setUnid(String unid) {
+        this.unid = unid;
+    }
 
-	public void setLon(double lon) {
-		this.lon = lon;
-	}
+    public float getMag() {
+        return mag;
+    }
 
-	public void setAuth(String auth) {
-		this.auth = auth;
-	}
+    public void setMag(float mag) {
+        this.mag = mag;
+    }
 
-	public void setLat(double lat) {
-		this.lat = lat;
-	}
+    public Date getTime() {
+        return time;
+    }
 
-	public void setDepth(float depth) {
-		this.depth = depth;
-	}
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
-	public void setUnid(String unid) {
-		this.unid = unid;
-	}
+    public String getSource_id() {
+        return source_id;
+    }
 
-	public void setMag(float mag) {
-		this.mag = mag;
-	}
+    public void setSource_id(String source_id) {
+        this.source_id = source_id;
+    }
 
-	public void setTime(Date time) {
-		this.time = time;
-	}
+    public String getSource_catalog() {
+        return source_catalog;
+    }
 
-	public void setSource_id(String source_id) {
-		this.source_id = source_id;
-	}
+    public void setSource_catalog(String source_catalog) {
+        this.source_catalog = source_catalog;
+    }
 
-	public void setSource_catalog(String source_catalog) {
-		this.source_catalog = source_catalog;
-	}
+    public String getFlynn_region() {
+        return flynn_region;
+    }
 
-	public void setFlynn_region(String flynn_region) {
-		this.flynn_region = flynn_region;
-	}
+    public void setFlynn_region(String flynn_region) {
+        this.flynn_region = flynn_region;
+    }
 
 }

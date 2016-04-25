@@ -34,15 +34,15 @@
 
     <string-array name="array_Source">
         <item>All</item>
-        <item>Kandilli Rasathanesi</item>
-        <item>Seismic Portal</item>
-        <item>U.S. Geological Survey</item>
+
+        <item>http://www.seismicportal.eu</item>
+        <item>http://earthquake.usgs.gov</item>
     </string-array>
     <string-array name="array_Source_Values">
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
+
     </string-array>
 
     <!-- ############### min_magnitude ############### -->
@@ -72,26 +72,6 @@
         <item>6</item>
     </string-array>
 
-    <!-- ############## map_type ################ -->
-
-    <string name="listPref_DialogTitle_MapType">Map Type</string>
-    <string name="listPref_Summary_MapType">Normal</string>
-    <string name="listPref_Title_MapType">Map Type</string>
-    <string name="listPref_Key_MapType">Key_MapType</string>
-    <string name="listPref_DefaultValue_MapType">0</string>
-
-    <string-array name="array_MapType">
-        <item>Normal</item>
-        <item>Satellite</item>
-        <item>Hybrid</item>
-        <item>Terrain</item>
-    </string-array>
-    <string-array name="array_MapType_Values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
 
     <!-- ############# update_period ################# -->
 

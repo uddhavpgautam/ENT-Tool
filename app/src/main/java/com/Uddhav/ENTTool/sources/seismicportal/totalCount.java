@@ -5,14 +5,14 @@ package com.Uddhav.ENTTool.sources.seismicportal;
  */
 public class totalCount {
 
-	private int	totalCount;
+    private int totalCount;
 
-	public int getTotalCount() {
-		return totalCount;
-	}
+    public int getTotalCount() {
+        return totalCount;
+    }
 
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
 
 }
